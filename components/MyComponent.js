@@ -1,5 +1,5 @@
 import { createElement } from "../tools/createElement";
-import { Text } from "./Text";
+import { Text } from "../tools/Text";
 
 class MyComponent {
   constructor() {

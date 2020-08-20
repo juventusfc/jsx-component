@@ -1,4 +1,4 @@
-import { Text } from "./Text";
+import { Text } from "../tools/Text";
 
 class Div {
   constructor() {
