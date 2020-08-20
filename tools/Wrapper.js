@@ -1,4 +1,4 @@
-import { Text } from "../components/Text";
+import { Text } from "./Text";
 
 class Wrapper {
   constructor(type) {
