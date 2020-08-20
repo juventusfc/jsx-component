@@ -1,19 +1,7 @@
 import { createElement } from "../utils/createElement";
-import { Text } from "../utils/Text";
+import Component from "../utils/Component";
 
-class MyComponent {
-  constructor() {
-    this.children = [];
-  }
-
-  setAttribute(key, value) {
-    this.root.setAttribute(key, value);
-  }
-
-  appendChild(child) {
-    this.children.push(child);
-  }
-
+class MyComponent extends Component {
   mountTo(parent) {
     this.slot = <div></div>;
     for (let child of this.children) {
