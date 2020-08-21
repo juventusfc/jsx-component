@@ -2,13 +2,13 @@ import { createElement } from "../utils/createElement";
 import Component from "../utils/Component";
 
 class MyComponent extends Component {
-  mountTo(parent) {
+  mountTo(parentDom) {
     this.slot = <div></div>;
     for (let child of this.children) {
       this.slot.appendChild(child);
     }
 
-    this.render().mountTo(parent);
+    this.render().mountTo(parentDom);
   }
 
   render() {
