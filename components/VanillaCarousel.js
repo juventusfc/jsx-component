@@ -1,10 +1,8 @@
 import { createElement } from "../utils/createElement";
-import Component from "../utils/Component";
 import "./VanillaCarousle.css";
 
-export default class VanillaCarousel extends Component {
+export default class VanillaCarousel {
   constructor() {
-    super();
     this.rootDom = null;
     this.data = [];
   }

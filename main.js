@@ -1,6 +1,6 @@
 import { createElement } from "./utils/createElement";
-import Div from "./components/Div";
-import MyComponent from "./components/MyComponent";
+// import Div from "./components/Div";
+// import MyComponent from "./components/MyComponent";
 import VanillaCarousel from "./components/VanillaCarousel";
 
 // let component = (

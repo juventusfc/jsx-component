@@ -1,8 +1,6 @@
-import Component from "./Component";
-
-export default class Wrapper extends Component {
+export default class Wrapper {
   constructor(type) {
-    super();
+    this.children = [];
     this.rootDom = document.createElement(type);
   }
 
@@ -30,5 +28,13 @@ export default class Wrapper extends Component {
       }
     };
     visit(this.children);
+  }
+
+  setAttribute(key, value) {
+    this.rootDom.setAttribute(key, value);
+  }
+
+  appendChild(child) {
+    this.children.push(child);
   }
 }
