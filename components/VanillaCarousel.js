@@ -1,4 +1,6 @@
+import { createElement } from "../utils/createElement";
 import Component from "../utils/Component";
+import "./VanillaCarousle.css";
 
 export default class VanillaCarousel extends Component {
   constructor() {
@@ -7,25 +9,29 @@ export default class VanillaCarousel extends Component {
     this.data = [];
   }
 
-  render() {
-    this.rootDom = document.createElement("div");
-    this.rootDom.classList.add("carousel");
-
-    for (let d of this.data) {
-      const catImg = document.createElement("img");
-      catImg.src = d;
-      catImg.setAttribute("draggable", "false");
-
-      this.rootDom.appendChild(catImg);
+  setAttribute(key, value) {
+    if (Array.isArray(value)) {
+      this.data = value;
+    } else {
+      this.rootDom.setAttribute(key, value);
     }
+  }
 
-    // add slide
+  mountTo(parentDom) {
+    this.render().mountTo(parentDom);
+  }
+
+  render() {
+    let children = this.data.map((d) => {
+      return <img src={d} draggable="false" />;
+    });
+
     let currentPosition = 0;
     const slides = () => {
       let nextPosition = (currentPosition + 1) % this.data.length;
 
-      let currentImg = this.rootDom.childNodes[currentPosition];
-      let nextImg = this.rootDom.childNodes[nextPosition];
+      let currentImg = children[currentPosition];
+      let nextImg = children[nextPosition];
 
       currentImg.style.transition = `ease 0s`;
       nextImg.style.transition = `ease 0s`;
@@ -49,16 +55,18 @@ export default class VanillaCarousel extends Component {
     };
     // setTimeout(slides, 3000);
 
-    this.rootDom.addEventListener("mousedown", (e) => {
+    const root = <div class="carousel">{children}</div>;
+
+    root.addEventListener("mousedown", (e) => {
       let startX = e.clientX;
 
       let prevPosition =
         (currentPosition + this.data.length - 1) % this.data.length;
       let nextPosition = (currentPosition + 1) % this.data.length;
 
-      let prevImg = this.rootDom.childNodes[prevPosition];
-      let currentImg = this.rootDom.childNodes[currentPosition];
-      let nextImg = this.rootDom.childNodes[nextPosition];
+      let prevImg = children[prevPosition];
+      let currentImg = children[currentPosition];
+      let nextImg = children[nextPosition];
 
       prevImg.style.transition = `ease 0s`;
       currentImg.style.transition = `ease 0s`;
@@ -118,5 +126,7 @@ export default class VanillaCarousel extends Component {
       document.addEventListener("mousemove", move);
       document.addEventListener("mouseup", up);
     });
+
+    return root;
   }
 }
